@@ -38,8 +38,8 @@ http://<ip>:<port>/docs/index.html
 ```
 
 ### Software ##
-- Golang
-- MySQL
+- Python
+- RethinkDB  ( NoSQL )
 - Docker
 
 
