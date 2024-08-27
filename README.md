@@ -16,6 +16,13 @@ Rethin
 1) python main.app 
 ```
 
+## See Events ##
+```shell
+1) Open http://localhost:8000
+2) Insert Events - See Rethink above
+```
+
+
 ## Rethink ##
 ```shell
 1) Open http://localhost:8080
