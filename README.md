@@ -39,11 +39,6 @@ Rethin
 ```
 
 
-## Documentation ( Swagger ) ##
-```shell
-http://<ip>:<port>/docs/index.html
-```
-
 ### Software ##
 - Python
 - RethinkDB  ( NoSQL )
