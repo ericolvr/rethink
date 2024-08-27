@@ -1,50 +1,29 @@
+"""base to study about rethink """
 from rethinkdb import RethinkDB
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
-from fastapi.responses import StreamingResponse
+from fastapi.responses import HTMLResponse, StreamingResponse
 from typing import Generator
 
 app = FastAPI()
 
 r = RethinkDB()
-# Função para criar uma nova conexão com o RethinkDB
 def get_rethinkdb_connection():
     return r.connect("localhost", 28015)
 
-# Função para escutar mudanças na tabela do RethinkDB
+
 def listen_to_changes() -> Generator[str, None, None]:
     connection = get_rethinkdb_connection()
     table = r.db("test").table("messages")
     cursor = table.changes().run(connection)
+
     for change in cursor:
-        # Envia o novo registro como texto para o cliente
         yield f"data: {change['new_val']}\n\n"
 
-# @app.get("/", response_class=HTMLResponse)
-# async def get():
-#     html_content = """
-#     <!DOCTYPE html>
-#     <html>
-#     <head>
-#         <title>Live Updates</title>
-#     </head>
-#     <body>
-#         <h1>Mensagens em Tempo Real</h1>
-#         <ul id="messages"></ul>
-#         <script type="text/javascript">
-#             const evtSource = new EventSource("/events");
-#             evtSource.onmessage = function(event) {
-#                 const newElement = document.createElement("li");
-#                 newElement.textContent = event.data;
-#                 document.getElementById("messages").appendChild(newElement);
-#             };
-#         </script>
-#     </body>
-#     </html>
-#     """
-#     return html_content
 
-
+"""
+    The HTML content is a simple page with a table that will be populated with the messages received from the server.
+    This page using this Javascript should be on Smart Integration - Terminal - to accept real time events 
+"""
 @app.get("/", response_class=HTMLResponse)
 async def get():
     html_content = """
@@ -98,12 +77,18 @@ async def get():
     """
     return html_content
 
+
 @app.get("/events")
 async def events():
     return StreamingResponse(listen_to_changes(), media_type="text/event-stream")
 
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(
+        app, 
+        host="0.0.0.0", 
+        port=8000
+    )
 
 
