@@ -25,10 +25,7 @@
 1) python rasp.py 
 ```
 
-
-
-
-## Manula Insert ##
+## Manual Insert ##
 ```shell
 1) Open http://localhost:8080
 2) Click Tables
