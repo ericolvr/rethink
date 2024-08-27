@@ -46,7 +46,10 @@
 - RethinkDB  ( NoSQL )
 - Docker
 
+![Descrição da Imagem](https://ibb.co/RSp1Ssd)
 
-![Descrição da Imagem]([https://exemplo.com/imagem.jpg](https://ibb.co/RSp1Ssd))
+
+
+
 
 
