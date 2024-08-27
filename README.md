@@ -1,5 +1,4 @@
-# NTE #
-Rethin
+# Rethink #
 
 
 ## Start RethinkDB ##
