@@ -1,4 +1,5 @@
 """base to study about rethink """
+from pydantic import BaseModel
 from rethinkdb import RethinkDB
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, StreamingResponse
@@ -8,12 +9,12 @@ app = FastAPI()
 
 r = RethinkDB()
 def get_rethinkdb_connection():
-    return r.connect("localhost", 28015)
+    return r.connect('localhost', 28015)
 
 
 def listen_to_changes() -> Generator[str, None, None]:
     connection = get_rethinkdb_connection()
-    table = r.db("test").table("messages")
+    table = r.db('test').table('messages')
     cursor = table.changes().run(connection)
 
     for change in cursor:
@@ -78,12 +79,22 @@ async def get():
     return html_content
 
 
-@app.get("/events")
+@app.get('/events')
 async def events():
     return StreamingResponse(listen_to_changes(), media_type="text/event-stream")
 
+class Event(BaseModel):
+    message: str
 
-if __name__ == "__main__":
+
+@app.post('/save-events')
+async def save_event(event: Event ):
+    connection = get_rethinkdb_connection()
+
+    r.db('test').table('messages').insert({'message': event.message}).run(connection)
+    return {'status': 'Ok'}
+
+if __name__ == '__main__':
     import uvicorn
     uvicorn.run(
         app, 
