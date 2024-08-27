@@ -12,7 +12,7 @@
 
 ## Run APP  ##
 ```shell
-1) python main.app 
+1) python main.py
 ```
 
 ## See Events ##
@@ -21,8 +21,15 @@
 2) Insert Events - See Rethink above
 ```
 
+## Run Mocked rasp Events  ##
+```shell
+1) python rasp.py 
+```
 
-## Rethink ##
+
+
+
+## Manula Insert ##
 ```shell
 1) Open http://localhost:8080
 2) Click Tables
