@@ -1,0 +1,16 @@
+version: '3'
+services:
+  rethinkdb:
+    image: rethinkdb:latest
+    ports:
+      - "28015:28015"  
+      - "29015:29015"  
+      - "8080:8080"    
+    volumes:
+      - rethinkdb_data:/data
+    environment:
+      - RETHINKDB_NAME=alarmtek
+      - RETHINKDB_DRIVER=python
+
+volumes:
+  rethinkdb_data:
