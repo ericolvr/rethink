@@ -40,7 +40,7 @@ async def get():
                 width: 100%;
                 height: 50px;
                 background-color: #EFEFEF;
-                color: white;
+                color: #00000;
                 text-align: center;
                 line-height: 50px;
             }
@@ -58,7 +58,7 @@ async def get():
         </style>
     </head>
     <body>
-        <div class="topbar">Terminal recebdendo Eventos  via SSE ( Server Side Events )</div>
+        <div class="topbar">Terminal recebendo Eventos via SSE ( Server Side Events )</div>
         <div class="container">
             <table id="messages"></table>
         </div>
