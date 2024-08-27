@@ -84,14 +84,20 @@ async def events():
     return StreamingResponse(listen_to_changes(), media_type="text/event-stream")
 
 class Event(BaseModel):
-    message: str
+    uniorg: str
+    branch: str
+    alert: str
 
 
 @app.post('/save-events')
 async def save_event(event: Event ):
     connection = get_rethinkdb_connection()
-
-    r.db('test').table('messages').insert({'message': event.message}).run(connection)
+    r.db('test').table('messages').insert(
+        {
+            'uniorg': event.uniorg, 
+            'branch': event.branch, 
+            'alert': event.alert}
+    ).run(connection)
     return {'status': 'Ok'}
 
 if __name__ == '__main__':
