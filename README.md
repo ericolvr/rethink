@@ -18,10 +18,9 @@
 ## See Events ##
 ```shell
 1) Open http://localhost:8000
-2) Insert Events - See Rethink above
 ```
 
-## Run Mocked rasp Events  ##
+## Run Mocked Rasp Events  ##
 ```shell
 1) python rasp.py 
 ```
