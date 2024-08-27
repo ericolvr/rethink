@@ -46,7 +46,7 @@
 - RethinkDB  ( NoSQL )
 - Docker
 
-<img src="[https://exemplo.com/imagem.jpg](https://ibb.co/RSp1Ssd)" alt="Descrição da Imagem">
+![Descrição da Imagem](arc.png)
 
 
 
